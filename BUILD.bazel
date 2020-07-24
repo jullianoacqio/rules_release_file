@@ -16,9 +16,18 @@ package(default_visibility = ["//visibility:private"])
 licenses(["notice"])  # Apache 2.0
 
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@rules_python//python:defs.bzl", "py_runtime")
 
 bzl_library(
     name = "bzl",
     srcs = glob(["*.bzl"]),
     visibility = ["//visibility:public"],
+)
+
+py_runtime(
+    name = "py_runtime",
+    interpreter_path = select({
+        "@bazel_tools//tools/python:PY2": "/usr/bin/python2",
+        "@bazel_tools//tools/python:PY3": "/usr/bin/python3",
+    }),
 )

@@ -20,6 +20,13 @@ repository.
 """
 
 load(":py_repositories.bzl", "py_deps")
+load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 def deps():
     py_deps()
+    go_rules_dependencies()
+
+    go_register_toolchains()
+
+    gazelle_dependencies()

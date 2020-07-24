@@ -16,9 +16,12 @@ package(default_visibility = ["//visibility:private"])
 
 licenses(["notice"])
 
-load("@subpar//:subpar.bzl", "par_binary")
 load("@rules_python//python:defs.bzl", "py_binary")
 load("@rules_release_pip_deps//:requirements.bzl", "requirement")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix internal
+gazelle(name = "gazelle")
 
 filegroup(
     name = "all_files",
@@ -31,14 +34,7 @@ exports_files([
     "release.sh.tpl",
 ])
 
-par_binary(
-    name = "stamper",
-    srcs = ["stamper.py"],
-    python_version = "PY3",
-    visibility = ["//visibility:public"],
-)
-
-par_binary(
+py_binary(
     name = "release",
     srcs = ["release.py"],
     deps = [

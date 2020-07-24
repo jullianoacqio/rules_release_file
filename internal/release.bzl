@@ -12,12 +12,12 @@ _common_attr = dict(
         "substitutions": attr.string_dict(),
         "increments": attr.string_dict(),
         "_stamper": attr.label(
-            default = Label("//internal:stamper"),
+            default = Label("//internal/go/cmd/stamper"),
             cfg = "host",
             executable = True,
         ),
         "_release_tool": attr.label(
-            default = Label("//internal:release.par"),
+            default = Label("//internal:release"),
             cfg = "host",
             executable = True,
         ),

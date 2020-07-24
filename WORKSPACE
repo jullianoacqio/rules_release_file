@@ -11,3 +11,7 @@ release_file_deps()
 load("@rules_release_file//release_file:pip_repositories.bzl", release_file_pip_deps = "pip_deps")
 
 release_file_pip_deps()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
